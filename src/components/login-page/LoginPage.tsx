@@ -36,7 +36,11 @@ export const LoginPage = () => {
             />
             {
                 !isCurrentDataValid
-                    ? <div className={appStyles.redText}>wrong login data</div>
+                    ? <ul className={appStyles.redText}>
+                        ! Make sure that:
+                        <li>password and email are valid</li>
+                        <li>user is registered</li>
+                    </ul>
                     : null
             }
             <p>

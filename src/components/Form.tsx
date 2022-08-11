@@ -14,12 +14,17 @@ export const Form: React.FC<FormPropsType> = ({btnTitle, handleClick}) => {
 
     let [email, setEmail] = useState<string>('')
     let [pass, setPass] = useState<string>('')
-    // const {isAuth} = useAuth()
 
 
     const onClickHandler = () => {
         handleClick(email, pass)
     }
+    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLSpanElement>) => {
+        if (e.key === 'Enter') {
+            handleClick(email, pass)
+        }
+    }
+
     const emailOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
     }
@@ -28,37 +33,33 @@ export const Form: React.FC<FormPropsType> = ({btnTitle, handleClick}) => {
     }
 
     return (
-        <>
-            <form className={appStyles.flexColumn}>
-                <TextField
-                    className={appStyles.formInput}
-                    margin="dense"
-                    id="standard-basic"
-                    placeholder="email"
-                    variant="outlined"
-                    type="email"
-                    value={email}
-                    onChange={emailOnChange}
-                />
-                <TextField
-                    className={appStyles.formInput}
-                    margin="dense"
-                    id="standard-basic"
-                    placeholder="password"
-                    variant="outlined"
-                    type="password"
-                    value={pass}
-                    onChange={passOnChange}
-                />
-            </form>
-
+        <form
+            onKeyPress={onKeyPressHandler}
+            className={appStyles.flexColumn}>
+            <TextField
+                className={appStyles.formInput}
+                margin="dense"
+                id="standard-basic"
+                placeholder="email"
+                variant="outlined"
+                type="email"
+                value={email}
+                onChange={emailOnChange}/>
+            <TextField
+                className={appStyles.formInput}
+                margin="dense"
+                id="standard-basic"
+                placeholder="password"
+                variant="outlined"
+                type="password"
+                value={pass}
+                onChange={passOnChange}/>
             <Button
                 className={appStyles.formBtn}
                 variant="contained"
-                onClick={onClickHandler}
-            >
+                onClick={onClickHandler}>
                 {btnTitle}
             </Button>
-        </>
+        </form>
     )
 }

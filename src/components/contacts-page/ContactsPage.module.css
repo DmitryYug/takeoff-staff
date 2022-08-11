@@ -13,9 +13,21 @@
     justify-content: space-between;
 }
 .addContactBtn {
-    min-width: 40px;
-    min-height: 40px
+    width: 67vw;
+    margin: 10px;
 }
+.addContactModalBtn {
+
+}
+
+
 .addForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 10px;
 }
+.addFormContainer {
+    width: 100%;
+}
+
