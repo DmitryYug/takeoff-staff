@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditableSpan from "./EditableSpan";
 import {useAppDispatch} from "../../hooks/redux-hooks";
 import styles from './ContactsPage.module.css'
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 
 type ContactItemPropsType = {
@@ -36,9 +37,10 @@ export const ContactsItem: React.FC<ContactItemPropsType> = ({contact}) => {
 
     return (
         <Paper
-            className={styles.cardMargin}
-            elevation={15}>
-            <Card className={styles.cardItem}>
+            className={`${styles.cardMargin} ${styles.cardItem}`}
+            elevation={15}
+        >
+            <Card>
                 <CardContent>
                     <Typography variant="h5" component="div">
                         <EditableSpan
@@ -46,7 +48,6 @@ export const ContactsItem: React.FC<ContactItemPropsType> = ({contact}) => {
                             title={contact.name}
                             onChange={editeName}
                         />
-
                     </Typography>
                     <Typography color="text.secondary">
                         <EditableSpan
@@ -64,12 +65,12 @@ export const ContactsItem: React.FC<ContactItemPropsType> = ({contact}) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <DeleteIcon/>
                     <Button
                         onClick={removeHandler}
                         size="small"
                     >
-                        Remove contact
+                        <DeleteIcon/>
+                        Remove
                     </Button>
                 </CardActions>
             </Card>

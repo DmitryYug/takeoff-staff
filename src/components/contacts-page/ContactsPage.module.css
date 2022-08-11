@@ -1,10 +1,21 @@
+
 .cardMargin {
     margin-bottom: 10px;
 }
 .cardItem {
-    width: 300px;
+    width: 330px;
 }
 .searchStyles {
     width: 90%;
     margin-top: 20px;
+}
+.spaceBetween {
+    justify-content: space-between;
+}
+.addContactBtn {
+    min-width: 40px;
+    min-height: 40px
+}
+.addForm {
+    margin-bottom: 10px;
 }

@@ -13,6 +13,7 @@ type AppReducerType =
     | ReturnType<typeof addContactAC>
     | ReturnType<typeof searchContactAC>
     | ReturnType<typeof removeContactAc>
+    | ReturnType<typeof isCurrentDataValidAC>
 
 export type ContactItem = {
     id: string,
@@ -27,7 +28,8 @@ export type AuthDataType = {
 export type StateType = {
     authData: AuthDataType,
     contacts: ContactItem[],
-    searchValue: string
+    searchValue: string,
+    isCurrentDataValid: boolean
 }
 const initialState: StateType = {
     authData: {
@@ -35,7 +37,8 @@ const initialState: StateType = {
         email: ''
     },
     contacts: [],
-    searchValue: ''
+    searchValue: '',
+    isCurrentDataValid: true
 }
 
 
@@ -104,6 +107,11 @@ export const appReducer = (state = initialState, action: AppReducerType): StateT
                 ...state,
                 searchValue: action.value,
             }
+        case "IS-CURRENT-DATA-VALID":
+            return {
+                ...state,
+                isCurrentDataValid: action.value
+            }
         default:
             return state
     }
@@ -136,6 +144,8 @@ export const searchContactAC = (value: string) => ({
 export const removeContactAc = (contactId: string) => ({
     type: 'REMOVE-CONTACT', contactId
 } as const)
-
+export const isCurrentDataValidAC = (value: boolean) => ({
+    type: 'IS-CURRENT-DATA-VALID', value
+} as const)
 
 

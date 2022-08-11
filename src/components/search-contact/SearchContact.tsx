@@ -27,6 +27,7 @@ export const SearchContact: React.FC<SearchContactPropsType> = (
     return (
         <TextField
             className={styles.searchStyles}
+            margin="dense"
             value={value}
             label={labelText}
             error={error}

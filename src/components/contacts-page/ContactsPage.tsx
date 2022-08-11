@@ -8,6 +8,7 @@ import {ContactsItem} from "./ContactItem";
 import {AddContact} from '../add-contact/AddContact';
 import {SearchContact} from "../search-contact/SearchContact";
 import appStyles from '../../App.module.css'
+import styles from './ContactsPage.module.css'
 
 
 export const ContactsPage = () => {
@@ -43,9 +44,6 @@ export const ContactsPage = () => {
                         onChangeCallback={searchCb}
                     />
                     <AddContact addItem={addContact}/>
-                    <div className={appStyles.alignLeft}>
-                        * Double click on contact field to edit
-                    </div>
                 </div>
                 <div className={appStyles.container}>
                     {filteredContacts.map(c => <ContactsItem key={c.id} contact={c}/>)}

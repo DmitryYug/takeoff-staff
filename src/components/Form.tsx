@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useState} from 'react'
 import {Button, TextField} from "@mui/material";
 import appStyles from '../App.module.css'
+import {useAuth} from "../hooks/use-auth";
+import {Navigate} from "react-router-dom";
 
 
 type FormPropsType = {
@@ -12,6 +14,8 @@ export const Form: React.FC<FormPropsType> = ({btnTitle, handleClick}) => {
 
     let [email, setEmail] = useState<string>('')
     let [pass, setPass] = useState<string>('')
+    // const {isAuth} = useAuth()
+
 
     const onClickHandler = () => {
         handleClick(email, pass)
@@ -47,6 +51,7 @@ export const Form: React.FC<FormPropsType> = ({btnTitle, handleClick}) => {
                     onChange={passOnChange}
                 />
             </form>
+
             <Button
                 className={appStyles.formBtn}
                 variant="contained"
