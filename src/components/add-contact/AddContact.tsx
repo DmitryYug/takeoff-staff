@@ -33,7 +33,6 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
     let [nameError, setNameError] = useState<boolean>(false)
     let [phoneError, setPhoneError] = useState<boolean>(false)
     let [emailError, setEmailError] = useState<boolean>(false)
-    let [isAddBtnDisabled, setIsBtnDisabled] = useState<boolean>(false)
 
     const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setEmailError(false)
@@ -64,23 +63,17 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
             setNewPhone('')
             setNewName('')
             setNewEmail('')
-        } else {
-            setIsBtnDisabled(true)
         }
     }
 
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    const addItemOnKeyPressHandler = (e: React.KeyboardEvent<HTMLFormElement>) => {
         if (e.key === 'Enter') {
             addItemValidation()
         }
-
     }
     const addItemOnclickHandler = () => {
         addItemValidation()
     }
-    console.log(nameError, phoneError, emailError)
-    console.log(newName, newPhone, newEmail)
-
 
     return (
         <div>
@@ -88,7 +81,7 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
                 className={styles.addContactBtn}
                 variant='contained'
                 onClick={() => setOpen(true)}>
-                <PersonAddIcon sx={{marginRight: '10px'}}/>
+                <PersonAddIcon sx={{marginRight: '20px'}}/>
                 Add new contact
             </Button>
             <Modal
@@ -99,7 +92,7 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
                 <Box sx={style}>
                     <form
                         className={styles.addForm}
-                        onKeyPress={onKeyPressHandler}>
+                        onKeyPress={addItemOnKeyPressHandler}>
                         <TextField
                             error={nameError}
                             label='name'
@@ -133,7 +126,9 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
                             {
                                 (nameError || phoneError || emailError)
                                     ? <div className={appStyles.redText}>
-                                        Some input is empty
+                                        <p>{nameError ? 'Name is empty' : null}</p>
+                                        <p>{phoneError ? 'Phone is empty' : null}</p>
+                                        <p>{emailError ? 'Email is empty' : null}</p>
                                     </div>
                                     : null
                             }
