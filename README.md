@@ -1,7 +1,5 @@
 # Login and registration pages with private contacts page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Node version
 v16.14.2
 
@@ -21,3 +19,7 @@ Authorisation was realised with google firebase platform:  https://firebase.goog
 Contacts data from: https://jsonplaceholder.typicode.com/users
 
 Basic styles from: https://mui.com/
+
+## User login data for test app:
+email: test@user.com\
+password: 123456
