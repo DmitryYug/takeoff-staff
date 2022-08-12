@@ -20,6 +20,6 @@ Contacts data from: https://jsonplaceholder.typicode.com/users
 
 Basic styles from: https://mui.com/
 
-## User login data for test app:
+## User data for test app:
 email: test@user.com\
 password: 123456
