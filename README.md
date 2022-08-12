@@ -5,7 +5,7 @@ v16.14.2
 
 ## Available Scripts
 
-First run in terminal:
+First run in the project directory in terminal:
 ### `yarn` 
 To install used in project packages
 
