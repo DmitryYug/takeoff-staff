@@ -1,14 +1,13 @@
 import React, {ChangeEvent, useState} from 'react'
+
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
-export type EditableFieldType = 'name' | 'phone' | 'email'
 type EditableSpanPropsType = {
-    propId: EditableFieldType,
     title: string,
     onChange: (newTitle: string) => void
 }
 
-const EditableSpan = ({propId, title, onChange}: EditableSpanPropsType) => {
+const EditableSpan = ({title, onChange}: EditableSpanPropsType) => {
 
     let [editMode, setEditMode] = useState<boolean>(false)
     let [newTitle, setNewTitle] = useState<string>(title)
@@ -29,6 +28,7 @@ const EditableSpan = ({propId, title, onChange}: EditableSpanPropsType) => {
             viewModeEnabled()
         }
     }
+
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTitle(e.currentTarget.value)
     }
@@ -44,7 +44,6 @@ const EditableSpan = ({propId, title, onChange}: EditableSpanPropsType) => {
                 fontSize='small'
             />
             <span
-                // onDoubleClick={editModeEnabled}
                 onBlur={viewModeEnabled}
                 onKeyPress={viewModeEnabledOnKeyPress}
             >

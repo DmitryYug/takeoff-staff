@@ -1,7 +1,11 @@
-import {AppDispatch} from "./redux-store";
-import {AppApi} from "../api/app-api";
-import {EditableFieldType} from "../components/contacts-page/EditableSpan";
 import {v1} from "uuid";
+import {AppApi} from "../api/app-api";
+import {Dispatch} from "redux";
+import {
+    addContactAC, editeEmailAc, editeNameAc, editePhoneAc, isCurrentDataValidAC, isFetchingAC,
+    removeContactAc, removeUserDataAC, searchContactAC, setContactsAc, setUserDataAC
+} from "./action";
+
 
 type AppReducerType =
     | ReturnType<typeof setUserDataAC>
@@ -14,6 +18,7 @@ type AppReducerType =
     | ReturnType<typeof searchContactAC>
     | ReturnType<typeof removeContactAc>
     | ReturnType<typeof isCurrentDataValidAC>
+    | ReturnType<typeof isFetchingAC>
 
 export type ContactItem = {
     id: string,
@@ -29,7 +34,8 @@ export type StateType = {
     authData: AuthDataType,
     contacts: ContactItem[],
     searchValue: string,
-    isCurrentDataValid: boolean
+    isCurrentDataValid: boolean,
+    isFetching: boolean
 }
 const initialState: StateType = {
     authData: {
@@ -38,7 +44,8 @@ const initialState: StateType = {
     },
     contacts: [],
     searchValue: '',
-    isCurrentDataValid: true
+    isCurrentDataValid: true,
+    isFetching: false
 }
 
 
@@ -112,40 +119,57 @@ export const appReducer = (state = initialState, action: AppReducerType): StateT
                 ...state,
                 isCurrentDataValid: action.value
             }
+        case "IS-FETCHING":
+            return {
+                ...state,
+                isFetching: action.value
+            }
         default:
             return state
     }
 }
-
-export const setUserDataAC = (id: string, email: string | null) => ({
-    type: 'SET-USER-DATA', id, email
-} as const)
-export const removeUserDataAC = () => ({
-    type: 'REMOVE-USER-DATA',
-} as const)
-export const setContactsAc = (contacts: ContactItem[]) => ({
-    type: 'SET-CONTACTS', contacts
-} as const)
-export const editeNameAc = (contactId: string, newName: string) => ({
-    type: 'EDIT-NAME', contactId, newName
-} as const)
-export const editePhoneAc = (contactId: string, newPhone: string) => ({
-    type: 'EDIT-PHONE', contactId, newPhone
-} as const)
-export const editeEmailAc = (contactId: string, newEmail: string) => ({
-    type: 'EDIT-EMAIL', contactId, newEmail
-} as const)
-export const addContactAC = (newEmail: string, newName: string, newPhone: string) => ({
-    type: 'ADD-CONTACT', newEmail, newName, newPhone
-} as const)
-export const searchContactAC = (value: string) => ({
-    type: 'SEARCH-CONTACT', value
-} as const)
-export const removeContactAc = (contactId: string) => ({
-    type: 'REMOVE-CONTACT', contactId
-} as const)
-export const isCurrentDataValidAC = (value: boolean) => ({
-    type: 'IS-CURRENT-DATA-VALID', value
-} as const)
-
-
+//
+// export const setUserDataAC = (id: string, email: string | null) => ({
+//     type: 'SET-USER-DATA', id, email
+// } as const)
+// export const removeUserDataAC = () => ({
+//     type: 'REMOVE-USER-DATA',
+// } as const)
+// export const setContactsAc = (contacts: ContactItem[]) => ({
+//     type: 'SET-CONTACTS', contacts
+// } as const)
+// export const editeNameAc = (contactId: string, newName: string) => ({
+//     type: 'EDIT-NAME', contactId, newName
+// } as const)
+// export const editePhoneAc = (contactId: string, newPhone: string) => ({
+//     type: 'EDIT-PHONE', contactId, newPhone
+// } as const)
+// export const editeEmailAc = (contactId: string, newEmail: string) => ({
+//     type: 'EDIT-EMAIL', contactId, newEmail
+// } as const)
+// export const addContactAC = (newEmail: string, newName: string, newPhone: string) => ({
+//     type: 'ADD-CONTACT', newEmail, newName, newPhone
+// } as const)
+// export const searchContactAC = (value: string) => ({
+//     type: 'SEARCH-CONTACT', value
+// } as const)
+// export const removeContactAc = (contactId: string) => ({
+//     type: 'REMOVE-CONTACT', contactId
+// } as const)
+// export const isCurrentDataValidAC = (value: boolean) => ({
+//     type: 'IS-CURRENT-DATA-VALID', value
+// } as const)
+// export const isFetchingAC = (value: boolean) => ({
+//     type: 'IS-FETCHING', value
+// } as const)
+//
+//
+// export const getContactsTC = () => {
+//     return (dispatch: Dispatch) => {
+//         dispatch(isFetchingAC(true))
+//         AppApi.getContacts().then(res => {
+//             dispatch(isFetchingAC(false))
+//             dispatch(setContactsAc(res))
+//         })
+//     }
+// }

@@ -1,5 +1,9 @@
 import React from 'react'
-import {ContactItem, editeEmailAc, editeNameAc, editePhoneAc, removeContactAc} from "../../store/app-reducer";
+
+import {editeEmailAc, editeNameAc, editePhoneAc, removeContactAc} from "../../store/action";
+import {useAppDispatch} from "../../hooks/redux-hooks";
+import EditableSpan from "./EditableSpan";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,10 +11,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Paper} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditableSpan from "./EditableSpan";
-import {useAppDispatch} from "../../hooks/redux-hooks";
-import styles from './ContactsPage.module.css'
-import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import styles from '../../pages/contacts-page/ContactsPage.module.css'
+
+import {ContactItem} from "../../store/app-reducer";
 
 
 type ContactItemPropsType = {
@@ -38,37 +41,23 @@ export const ContactsItem: React.FC<ContactItemPropsType> = ({contact}) => {
     return (
         <Paper
             className={`${styles.cardMargin} ${styles.cardItem}`}
-            elevation={15}
-        >
+            elevation={15}>
             <Card>
                 <CardContent>
                     <Typography variant="h5" component="div">
-                        <EditableSpan
-                            propId={'name'}
-                            title={contact.name}
-                            onChange={editeName}
-                        />
+                        <EditableSpan title={contact.name} onChange={editeName}/>
                     </Typography>
                     <Typography color="text.secondary">
-                        <EditableSpan
-                            propId={'phone'}
-                            title={contact.phone}
-                            onChange={editePhone}
-                        />
+                        <EditableSpan title={contact.phone} onChange={editePhone}/>
                     </Typography>
                     <Typography color="text.secondary">
-                        <EditableSpan
-                            propId={'email'}
-                            title={contact.email}
-                            onChange={editeEmail}
-                        />
+                        <EditableSpan title={contact.email} onChange={editeEmail}/>
                     </Typography>
                 </CardContent>
                 <CardActions>
                     <Button
                         onClick={removeHandler}
-                        size="small"
-                    >
+                        size="small">
                         <DeleteIcon/>
                         Remove
                     </Button>

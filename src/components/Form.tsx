@@ -1,8 +1,6 @@
 import React, {ChangeEvent, useState} from 'react'
-import {Button, TextField} from "@mui/material";
+import {Button, LinearProgress, TextField} from "@mui/material";
 import appStyles from '../App.module.css'
-import {useAuth} from "../hooks/use-auth";
-import {Navigate} from "react-router-dom";
 
 
 type FormPropsType = {
@@ -35,7 +33,7 @@ export const Form: React.FC<FormPropsType> = ({btnTitle, handleClick}) => {
     return (
         <form
             onKeyPress={onKeyPressHandler}
-            className={appStyles.flexColumn}>
+            className={`${appStyles.flexColumn} ${appStyles.width30}`}>
             <TextField
                 className={appStyles.formInput}
                 margin="dense"

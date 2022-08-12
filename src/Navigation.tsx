@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.module.css';
-import {LoginPage} from "./components/login-page/LoginPage";
+import {LoginPage} from "./pages/login-page/LoginPage";
 import {Route, Routes} from 'react-router-dom';
-import {ContactsPage} from "./components/contacts-page/ContactsPage";
-import {RegisterPage} from "./components/register-page/RegisterPage";
-import {WelcomePage} from "./components/welcome-page/WelcomePage";
+import {ContactsPage} from "./pages/contacts-page/ContactsPage";
+import {RegisterPage} from "./pages/register-page/RegisterPage";
+import {WelcomePage} from "./pages/welcome-page/WelcomePage";
 
-function App() {
+function Navigation() {
     return (
         <Routes>
             <Route path='/' element={<WelcomePage/>}/>
@@ -18,4 +18,4 @@ function App() {
 
 }
 
-export default App;
+export default Navigation;

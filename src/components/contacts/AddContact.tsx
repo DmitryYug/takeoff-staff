@@ -1,32 +1,20 @@
-import React, {ChangeEvent, KeyboardEventHandler, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
+
+
 import {Button, TextField} from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import styles from '../contacts-page/ContactsPage.module.css'
+import styles from '../../pages/contacts-page/ContactsPage.module.css'
 import appStyles from '../../App.module.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
-
 type AddContactProps = {
     addItem: (newEmail: string, newName: string, newPhone: string) => void
 }
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
-
 export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
 
-    let [open, setOpen] = React.useState(false)
+    let [modalOpen, setModalOpen] = React.useState(false)
     let [newEmail, setNewEmail] = useState('')
     let [newName, setNewName] = useState('')
     let [newPhone, setNewPhone] = useState('')
@@ -34,14 +22,24 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
     let [phoneError, setPhoneError] = useState<boolean>(false)
     let [emailError, setEmailError] = useState<boolean>(false)
 
+    const openModalHandler = () => {
+        setModalOpen(true)
+    }
+
+    const closeModalHandler = () => {
+        setModalOpen(false)
+    }
+
     const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setEmailError(false)
         setNewEmail(e.currentTarget.value)
     }
+
     const nameHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNameError(false)
         setNewName(e.currentTarget.value)
     }
+
     const phoneHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setPhoneError(false)
         setNewPhone(e.currentTarget.value)
@@ -59,7 +57,7 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
         }
         if (newEmail && newPhone && newName) {
             addItem(newEmail, newPhone, newName)
-            setOpen(false)
+            setModalOpen(false)
             setNewPhone('')
             setNewName('')
             setNewEmail('')
@@ -71,8 +69,20 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
             addItemValidation()
         }
     }
+
     const addItemOnclickHandler = () => {
         addItemValidation()
+    }
+
+    const addContactHelperText = () => {
+        return (
+        (nameError || phoneError || emailError)
+            && <div className={appStyles.redText}>
+                <p>{nameError && 'Name is empty'}</p>
+                <p>{phoneError && 'Phone is empty'}</p>
+                <p>{emailError && 'Email is empty'}</p>
+            </div>
+        )
     }
 
     return (
@@ -80,13 +90,13 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
             <Button
                 className={styles.addContactBtn}
                 variant='contained'
-                onClick={() => setOpen(true)}>
-                <PersonAddIcon sx={{marginRight: '20px'}}/>
+                onClick={openModalHandler}>
+                <PersonAddIcon sx={marginRight}/>
                 Add new contact
             </Button>
             <Modal
-                open={open}
-                onClose={() => setOpen(false)}
+                open={modalOpen}
+                onClose={closeModalHandler}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description">
                 <Box sx={style}>
@@ -123,15 +133,7 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
                             Add new contact
                         </Button>
                         <div>
-                            {
-                                (nameError || phoneError || emailError)
-                                    ? <div className={appStyles.redText}>
-                                        <p>{nameError ? 'Name is empty' : null}</p>
-                                        <p>{phoneError ? 'Phone is empty' : null}</p>
-                                        <p>{emailError ? 'Email is empty' : null}</p>
-                                    </div>
-                                    : null
-                            }
+                            {addContactHelperText()}
                         </div>
                     </form>
                 </Box>
@@ -140,3 +142,15 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
     )
 }
 
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+const marginRight = {marginRight: '20px'}

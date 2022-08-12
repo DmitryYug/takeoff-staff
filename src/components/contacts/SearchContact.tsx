@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
+
 import {TextField} from "@mui/material";
-import styles from '../contacts-page/ContactsPage.module.css'
+import styles from '../../pages/contacts-page/ContactsPage.module.css'
 
 export type SearchContactPropsType = {
     value: string,

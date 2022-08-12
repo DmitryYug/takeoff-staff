@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link, Navigate} from "react-router-dom";
+
 import {useAuth} from "../../hooks/use-auth";
-import {removeUserDataAC} from "../../store/app-reducer";
 import {useAppDispatch} from "../../hooks/redux-hooks";
+import {removeUserDataAC} from "../../store/action";
+
 import appStyles from '../../App.module.css'
 import {Button} from "@mui/material";
+
 
 export const WelcomePage = () => {
 
