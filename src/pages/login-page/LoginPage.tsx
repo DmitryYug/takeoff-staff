@@ -52,19 +52,13 @@ export const LoginPage = () => {
     }
 
     const testUserShow = () => {
-        if (isTestUserShowed) {
-            setIsTestUserShowed(false)
-        } else {
-            setIsTestUserShowed(true)
-        }
+        isTestUserShowed ? setIsTestUserShowed(false) : setIsTestUserShowed(true)
     }
-
 
     return (
         <div className={`${appStyles.container} ${appStyles.flexColumn}`}>
 
             <h2>Login Page</h2>
-
 
             <ValidationForm
                 onClick={setAuthData}
