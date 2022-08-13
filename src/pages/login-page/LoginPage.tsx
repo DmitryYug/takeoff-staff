@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
@@ -8,12 +8,17 @@ import {ValidationForm} from "../../components/ValidationForm";
 
 import ReportIcon from '@mui/icons-material/Report';
 import appStyles from '../../App.module.css'
+import {Button} from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 
 export const LoginPage = () => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+
+    let [isTestUserShowed, setIsTestUserShowed] = useState<boolean>(false)
 
     useEffect(() => {
         dispatch(isCurrentDataValidAC(true))
@@ -46,19 +51,44 @@ export const LoginPage = () => {
         )
     }
 
+    const testUserShow = () => {
+        if (isTestUserShowed) {
+            setIsTestUserShowed(false)
+        } else {
+            setIsTestUserShowed(true)
+        }
+    }
+
+
     return (
         <div className={`${appStyles.container} ${appStyles.flexColumn}`}>
+
             <h2>Login Page</h2>
+
+
             <ValidationForm
                 onClick={setAuthData}
                 btnTitle='login'
                 wrongLoginDataWarning={wrongLoginDataWarnings}/>
+
             <p>
                 Don`t have an account?
                 <Link className={appStyles.linkMargin} to={'/register'}>
                     register
                 </Link>
             </p>
+            <Button
+                onClick={testUserShow}
+                variant={'outlined'}>
+                Test user data
+                {isTestUserShowed ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
+            </Button>
+            {isTestUserShowed &&
+                <>
+                    <span>user: test@user.com</span>
+                    <span>password: 123456</span>
+                </>}
+
         </div>
     )
 }
