@@ -5,7 +5,7 @@ v16.14.2
 
 ## Available Scripts
 
-First run in terminal:
+First run in the project directory in terminal:
 ### `yarn` 
 To install used in project packages
 
@@ -20,6 +20,6 @@ Contacts data from: https://jsonplaceholder.typicode.com/users
 
 Basic styles from: https://mui.com/
 
-## User login data for test app:
+## User data for test app:
 email: test@user.com\
 password: 123456
