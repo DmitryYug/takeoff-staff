@@ -27,7 +27,7 @@ export const ValidationForm: React.FC<ValidationFormPropsType> = (
         <>
             <Form btnTitle={btnTitle} handleClick={onClickHandler}/>
 
-            {isFetching && <LinearProgress className={appStyles.width30}/>}
+            {isFetching && <LinearProgress className={appStyles.width300px}/>}
             {!isCurrentDataValid && wrongLoginDataWarning()}
         </>
     )
