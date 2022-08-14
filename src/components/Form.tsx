@@ -33,7 +33,7 @@ export const Form: React.FC<FormPropsType> = ({btnTitle, handleClick}) => {
     return (
         <form
             onKeyPress={onKeyPressHandler}
-            className={`${appStyles.flexColumn} ${appStyles.width30}`}>
+            className={appStyles.formContainer}>
             <TextField
                 className={appStyles.formInput}
                 margin="dense"

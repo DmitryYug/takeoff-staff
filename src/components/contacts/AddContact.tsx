@@ -1,12 +1,11 @@
 import React, {ChangeEvent, useState} from "react";
 
-
 import {Button, TextField} from "@mui/material";
-import styles from '../../pages/contacts-page/ContactsPage.module.css'
-import appStyles from '../../App.module.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import styles from '../../pages/contacts-page/ContactsPage.module.css'
+import appStyles from '../../App.module.css'
 
 type AddContactProps = {
     addItem: (newEmail: string, newName: string, newPhone: string) => void
@@ -56,7 +55,7 @@ export const AddContact: React.FC<AddContactProps> = ({addItem}) => {
             setPhoneError(true)
         }
         if (newEmail && newPhone && newName) {
-            addItem(newEmail, newPhone, newName)
+            addItem(newEmail, newName, newPhone)
             setModalOpen(false)
             setNewPhone('')
             setNewName('')

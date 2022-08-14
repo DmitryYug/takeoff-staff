@@ -6,11 +6,11 @@ import {isCurrentDataValidAC, isFetchingAC, setUserDataAC} from "../../store/act
 import {useAppDispatch} from "../../hooks/redux-hooks";
 import {ValidationForm} from "../../components/ValidationForm";
 
-import ReportIcon from '@mui/icons-material/Report';
-import appStyles from '../../App.module.css'
 import {Button} from "@mui/material";
+import ReportIcon from '@mui/icons-material/Report';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import appStyles from '../../App.module.css'
 
 
 export const LoginPage = () => {

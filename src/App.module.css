@@ -6,6 +6,13 @@
     justify-content: space-evenly;
     padding-top: 10px;
 }
+.formContainer {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .flexColumn {
     display: flex;
     flex-direction: column;
